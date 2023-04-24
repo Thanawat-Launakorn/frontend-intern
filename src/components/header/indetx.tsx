@@ -13,7 +13,7 @@ export default function AppHeader({ collapsed, onClick }: AppHeaderProps) {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
-    <Header style={{ padding: 0, background: colorBgContainer }}>
+    <Header style={{ padding: 0 }} className="bg-white">
       <div className="flex">
         {React.createElement(
           collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
@@ -22,7 +22,7 @@ export default function AppHeader({ collapsed, onClick }: AppHeaderProps) {
             onClick: onClick,
           }
         )}
-        <div>test</div>
+        <div></div>
       </div>
     </Header>
   );

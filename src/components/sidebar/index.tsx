@@ -6,6 +6,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
+import { useNavigate } from "react-router-dom";
 const { Sider } = Layout;
 type AppSideBarProps = {
   collapsed: boolean;
@@ -17,11 +18,16 @@ export default function AppSideBar({
   trigger,
   className,
 }: AppSideBarProps) {
+  const navigate = useNavigate();
   return (
-    <Sider trigger={trigger} collapsible collapsed={collapsed}>
-      <div className="logo" />
+    <Sider
+      trigger={trigger}
+      collapsible
+      collapsed={collapsed}
+      className="bg-white"
+    >
+      <div className="text-lg text-red-300">dfe</div>
       <Menu
-        className=""
         theme="dark"
         mode="inline"
         defaultSelectedKeys={["1"]}
@@ -30,16 +36,19 @@ export default function AppSideBar({
             key: "1",
             icon: <UserOutlined />,
             label: "nav 1",
+            onClick: () => navigate("/home"),
           },
           {
             key: "2",
             icon: <VideoCameraOutlined />,
             label: "nav 2",
+            onClick: () => navigate("/page2"),
           },
           {
             key: "3",
             icon: <UploadOutlined />,
             label: "nav 3",
+            onClick: () => navigate("/page3"),
           },
         ]}
       />
