@@ -22,7 +22,7 @@ export default function AppHeader({ collapsed, onClick }: AppHeaderProps) {
             onClick: onClick,
           }
         )}
-        <div>test</div>
+        <div className="test">test</div>
       </div>
     </Header>
   );
