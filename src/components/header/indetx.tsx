@@ -22,7 +22,11 @@ export default function AppHeader({ collapsed, onClick }: AppHeaderProps) {
             onClick: onClick,
           }
         )}
+<<<<<<< HEAD
         <div></div>
+=======
+        <div className="test">test</div>
+>>>>>>> 1deb60db799d8aa9d8a8714e9116b53b7a98c249
       </div>
     </Header>
   );
