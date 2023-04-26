@@ -1,5 +1,5 @@
 import React from "react";
-
+import calendar from "../../assets/images/calendar.png";
 import {
   UploadOutlined,
   UserOutlined,
@@ -26,7 +26,18 @@ export default function AppSideBar({
       collapsed={collapsed}
       className="bg-white"
     >
-      <div className="text-lg text-red-300">dfe</div>
+      <div className="logo bg-transparent flex justify-between items-center">
+        <img
+          src={calendar}
+          alt="calendar-image"
+          className="object-fill h-10 w-10 transition-all delay-75 translate-x-1"
+        />
+        <div className={collapsed ? "hidden" : ""}>
+          <h1 className="text-white text-md font-bold tracking-wide">
+            Booking System
+          </h1>
+        </div>
+      </div>
       <Menu
         theme="dark"
         mode="inline"
@@ -36,7 +47,7 @@ export default function AppSideBar({
             key: "1",
             icon: <UserOutlined />,
             label: "nav 1",
-            onClick: () => navigate("/home"),
+            onClick: () => navigate("/"),
           },
           {
             key: "2",

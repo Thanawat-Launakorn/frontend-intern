@@ -1,5 +1,7 @@
 import axios from "axios";
-const BASE_URL = "";
+import IUser from "../../models/IUser";
+
+const BASE_URL = "http://192.168.2.62:3001/";
 export async function getUser() {
-  await axios.get(`${BASE_URL}`);
+  await axios.get<Array<IUser>>(`${BASE_URL}user/getAll`);
 }
