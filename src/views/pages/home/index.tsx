@@ -34,12 +34,6 @@ export default function HomePage() {
         </Space>
         {/* GridLayoutTop */}
       </section>
-<<<<<<< HEAD
     </Container>
-=======
-      <div>Phum</div>
-    </div>
-    
->>>>>>> 1deb60db799d8aa9d8a8714e9116b53b7a98c249
   );
 }

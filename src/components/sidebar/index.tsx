@@ -42,7 +42,7 @@ export default function AppSideBar({
             key: "2",
             icon: <VideoCameraOutlined />,
             label: "nav 2",
-            onClick: () => navigate("/page2"),
+            onClick: () => navigate("/list-user"),
           },
           {
             key: "3",
