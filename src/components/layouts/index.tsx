@@ -12,8 +12,8 @@ const DefaultLayout: React.FC = () => {
   const [receive, setReceive] = React.useState<boolean>(false);
 
   return (
-    <ThemeProvider initialTheme="">
-      <Layout className="h-screen">
+    <ThemeProvider>
+      <Layout className="min-h-screen flex flex-col justify-between">
         <AppSideBar collapsed={collapsed} trigger={null} className="" />
         <Layout className="site-layout">
           <AppHeader

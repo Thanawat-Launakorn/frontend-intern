@@ -1,0 +1,42 @@
+.side-bar-fadein {
+    animation: side-bar-fadein 1.5s;
+    -webkit-animation: side-bar-fadein 1.5s;
+    -moz-animation: side-bar-fadein 1.5s;
+    -o-animation: side-bar-fadein 1.5s;
+    -ms-animation: side-bar-fadein 1.5s;
+}
+
+@keyframes side-bar-fadein {
+    0% {
+      opacity: 0;
+    }
+    100% 
+    {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes side-bar-fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-moz-keyframes side-bar-fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-webkit-keyframes side-bar-fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-o-keyframes side-bar-fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-ms-keyframes side-bar-fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
