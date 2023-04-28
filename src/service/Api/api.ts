@@ -6,18 +6,14 @@ export async function getUser() {
   return await axios.get<Array<IUser>>(`${BASE_URL}user/getAll`);
 }
 
-export async function Update<IModel>(
-  id?: number,
-  params?: Omit<IUser, "firstname" | "lastname">,
-  BASE_URL?: string
-) {
-  if (id && params) {
-    return await axios.patch<IModel>(`${BASE_URL}update/${id}`, params);
+export async function Delete<IModel>(id?: number, BASE_URL?: string) {
+  if (id) {
+    return await axios.delete<IModel>(`${BASE_URL}user/remove${id}`);
   }
 }
 
-export async function Delete<IModel>(id?: number, BASE_URL?: string) {
-  if (id) {
-    return await axios.delete<IModel>(`${BASE_URL}delete/${id}`);
-  }
-}
+// export async function Update<IModel>(id?: number, BASE_URL?: string) {
+//   if (id) {
+//     return await axios.update<IModel>(`${BASE_URL}user/update${id}`);
+//   }
+// }
