@@ -13,9 +13,12 @@ const DefaultLayout: React.FC = () => {
 
   return (
     <ThemeProvider>
-      <Layout className="min-h-screen flex flex-col justify-between">
+      <Layout className="min-h-screen flex flex-col justify-between" hasSider>
         <AppSideBar collapsed={collapsed} trigger={null} className="" />
-        <Layout className="site-layout">
+        <Layout
+          className="site-layout transition-all delay-75 "
+          style={collapsed ? { marginLeft: 80 } : { marginLeft: 250 }}
+        >
           <AppHeader
             collapsed={collapsed}
             onClick={() => setCollapsed(!collapsed)}

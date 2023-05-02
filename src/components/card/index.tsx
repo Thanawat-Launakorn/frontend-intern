@@ -7,12 +7,12 @@ type Props = {
 };
 export default function Card({ name, amount, icon }: Props) {
   return (
-    <div className="rounded-lg shadow-md bg-white dark:bg-red-600">
-      <div className="flex justify-between ">
-        <Typography.Title>{amount}</Typography.Title>
-        <Typography.Text className="text-xl">{icon}</Typography.Text>
+    <div className="px-3 py-4 rounded-lg shadow-md bg-white hover:bg-secondary hover:text-white">
+      <div className="flex justify-between">
+        <h2 className="text-4xl font-bold">{amount}</h2>
+        <p className="text-xl">{icon}</p>
       </div>
-      <Typography.Title level={4}>{name}</Typography.Title>
+      <h4 className="font-bold">{name}</h4>
     </div>
   );
 }

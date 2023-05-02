@@ -1,7 +1,13 @@
 import React, { ButtonHTMLAttributes, MouseEventHandler } from "react";
-import { Avatar, Layout, theme } from "antd";
-import { UserOutlined, SettingFilled } from "@ant-design/icons";
+import { Avatar, Layout, Space, theme } from "antd";
+import {
+  UserOutlined,
+  SettingFilled,
+  BulbFilled,
+  BulbOutlined,
+} from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+
 const { Header, Content } = Layout;
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { ThemeContext } from "../../context/ThemeProvider";
@@ -23,12 +29,12 @@ export default function AppHeader({
 
   const { useTheme, setTheme } = React.useContext(ThemeContext);
   const isDark = useTheme === "dark";
-  console.log(isDark);
+  console.log("isDark", useTheme);
 
   return (
     <Header
       style={{ padding: 0 }}
-      className="shadow-sm bg-white dark:bg-gray-900"
+      className="shadow-lg bg-white dark:bg-secondary border"
     >
       <div className="flex items-center justify-between mr-5">
         <div className="hidden  sm:block">
@@ -43,27 +49,38 @@ export default function AppHeader({
 
         <div>
           <div className="flex items-center ">
-            <button
-              type="button"
-              className="text-sm"
-              onClick={() => {
-                setTheme && setTheme(isDark ? "light" : "dark");
-              }}
-            >
-              <i className="fas fa-moon mr-3"></i>
-              <span className="font-normal">Dark Mode</span>
-            </button>
-            <Avatar icon={<UserOutlined />} size={30} />
-            <h3
-              className="capitalize mx-2 cursor-pointer"
-              onClick={() => navigate("/login")}
-            >
-              sign in
-            </h3>
-            <SettingFilled
-              className="ml-3 text-lg cursor-pointer"
-              onClick={() => setIsToggle(!props)}
-            />
+            <Space direction="vertical">
+              <Space wrap>
+                <button
+                  type="button"
+                  className="text-xl rounded-lg p-2.5 pt-0 m-2.5 border shadow-sm"
+                  onClick={() => {
+                    setTheme && setTheme(isDark ? "light" : "dark");
+                  }}
+                >
+                  {isDark ? (
+                    <>
+                      <BulbFilled />
+                    </>
+                  ) : (
+                    <>
+                      <BulbOutlined />
+                    </>
+                  )}
+                </button>
+
+                <Avatar
+                  icon={<UserOutlined className="object-cover" />}
+                  size="large"
+                  className="bg-gray-300"
+                />
+
+                <SettingFilled
+                  className="ml-3 text-lg cursor-pointer"
+                  onClick={() => setIsToggle(!props)}
+                />
+              </Space>
+            </Space>
           </div>
         </div>
       </div>

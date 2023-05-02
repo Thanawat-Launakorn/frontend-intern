@@ -57,7 +57,7 @@ export default function UserGraph() {
   });
   return (
     <div>
-      <Bar data={data} height={100} />
+      <Bar data={data} height={100} className="" />
     </div>
   );
 }

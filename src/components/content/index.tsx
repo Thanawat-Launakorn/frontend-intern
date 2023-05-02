@@ -1,20 +1,9 @@
 import React from "react";
 import crossX from "../../assets/svg/crossX.svg";
-
-import {
-  Button,
-  Drawer,
-  DrawerProps,
-  Layout,
-  Radio,
-  RadioChangeEvent,
-} from "antd";
+import { Drawer, DrawerProps, Layout } from "antd";
 import { routes } from "../../routes";
 import { Route, Routes } from "react-router-dom";
-import Container from "../containers";
-import Modal from "../modal";
-import ThemeProvider from "../../context/ThemeProvider";
-
+import "./content.css";
 const { Content } = Layout;
 type ContentProps = {
   toggle?: () => {};
@@ -26,7 +15,7 @@ export default function AppContent({ isOpen }: ContentProps) {
     React.useState<DrawerProps["placement"]>("left");
   const [open, setOpen] = React.useState(isOpen);
 
-  console.log(`open : ${open}`);
+  // console.log(`open : ${open}`);
 
   const onClose = () => {
     setOpen(false);
@@ -41,32 +30,30 @@ export default function AppContent({ isOpen }: ContentProps) {
   }, []);
   return (
     <Content>
-      <Container>
-        <Routes>
-          {routes.map(({ path, element }, idx) => {
-            return <Route key={idx} path={path} element={element} />;
-          })}
-        </Routes>
-        <Drawer
-          title="Basic Drawer"
-          placement={"right"}
-          closable={false}
-          onClose={onClose}
-          open={open}
-          key={placement}
-        >
-          <div className="relative">
-            <img
-              src={crossX}
-              alt="image-crossX"
-              className="cursor-pointer"
-              onClick={() => {
-                setOpen(!open);
-              }}
-            />
-          </div>
-        </Drawer>
-      </Container>
+      <Routes>
+        {routes.map(({ path, element }, idx) => {
+          return <Route key={idx} path={path} element={element} />;
+        })}
+      </Routes>
+      <Drawer
+        title="Basic Drawer"
+        placement={"right"}
+        closable={false}
+        onClose={onClose}
+        open={open}
+        key={placement}
+      >
+        <div className="relative">
+          <img
+            src={crossX}
+            alt="image-crossX"
+            className="cursor-pointer"
+            onClick={() => {
+              setOpen(!open);
+            }}
+          />
+        </div>
+      </Drawer>
     </Content>
   );
 }
