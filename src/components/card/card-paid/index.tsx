@@ -9,9 +9,13 @@ type Props = {
 
 export default function CardPaid({ image, amount, name }: Props) {
   return (
-    <div>
-      <div>
-        <img src={image} alt="image-profile" />
+    <div className="flex flex-col rounded-b-lg shadow-lg">
+      <div className="">
+        <img
+          src={image}
+          alt="image-profile"
+          className="object-cover w-full h-40 rounded-t-lg"
+        />
       </div>
       <div>
         <Typography.Title>{amount}</Typography.Title>

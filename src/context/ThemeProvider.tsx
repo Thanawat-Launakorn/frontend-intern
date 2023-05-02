@@ -33,9 +33,9 @@ export default function ThemeProvider({
   initialTheme,
   children,
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState("light");
-  const value = { theme, setTheme };
-  console.log(value);
+  const [useTheme, setTheme] = useState("light");
+  const value = { useTheme, setTheme };
+  console.log("value", value);
 
   const rawSetTheme = (theme: string) => {
     const root = window.document.documentElement; //rootElement
@@ -49,7 +49,7 @@ export default function ThemeProvider({
     rawSetTheme(initialTheme);
   }
 
-  useEffect(() => rawSetTheme(theme), [theme]);
+  useEffect(() => rawSetTheme(useTheme), [useTheme]);
 
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

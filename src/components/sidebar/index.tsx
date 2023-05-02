@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import calendar from "../../assets/images/calendar.png";
 import type { MenuProps } from "rc-menu";
 import "./sidebar.css";
 import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
   DashboardOutlined,
   FormOutlined,
   TableOutlined,
@@ -15,7 +12,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import Dashboard from "../../views/pages/dashboard";
+import { ThemeContext } from "../../context/ThemeProvider";
 const { Sider } = Layout;
 type AppSideBarProps = {
   collapsed: boolean;
@@ -28,7 +25,7 @@ export default function AppSideBar({
   className,
 }: AppSideBarProps) {
   const navigate = useNavigate();
-
+  const { useTheme, setTheme } = useContext(ThemeContext);
   type MenuItem = Required<MenuProps>["items"][number];
 
   function getItem(
@@ -94,17 +91,17 @@ export default function AppSideBar({
       trigger={trigger}
       collapsible
       collapsed={collapsed}
+      className="shadow-lg"
       width={250}
-      style={
-        {
-          // overflow: "hidden",
-          // height: "100vh",
-          // position: "fixed",
-          // left: 0,
-          // top: 0,
-          // bottom: 0,
-        }
-      }
+      theme={useTheme === "dark" ? "dark" : "light"}
+      style={{
+        overflow: "auto",
+        height: "100vh",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        bottom: 0,
+      }}
     >
       <div
         className="logo bg-transparent flex justify-between items-center cursor-pointer"
@@ -116,14 +113,16 @@ export default function AppSideBar({
           className="object-fill h-10 w-10 transition-all delay-75 translate-x-1"
         />
         <div className={collapsed ? "hidden" : ""}>
-          <h1 className="text-white text-lg font-semibold tracking-wide side-bar-fadein">
-            Booking System
-          </h1>
+          <div className="lg:-translate-x-1">
+            <h1 className="text-black text-xl  tracking-wide side-bar-fadein font-bold dark:text-white ">
+              Booking System
+            </h1>
+          </div>
         </div>
       </div>
 
       <Menu
-        theme="dark"
+        theme={useTheme === "dark" ? "dark" : "light"}
         mode="inline"
         defaultSelectedKeys={[]}
         items={items}
