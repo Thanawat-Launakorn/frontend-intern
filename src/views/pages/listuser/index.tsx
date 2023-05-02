@@ -11,10 +11,34 @@ import EditUser from "../edit-user";
 function Listuser() {
   const onSearch = (value: string) => console.log(value);
   const [getData, setData] = React.useState<IUser[]>([]);
-  const [user, setUser] = useState([]);
+  const [name, setName] = React.useState<IUser[]>([]);
+  const [inputUser, setInputUser] = React.useState({} as IUser);
 
   const BASE_URL = "http://192.168.2.62:3001/";
   const navigate = useNavigate();
+
+
+  const handleEdit = (id: string | number) => {
+      navigate(`/edit-user/${id}`)
+  }
+  const handleDelete = async (id: string) => {
+    try {
+      await Api.Delete(Number(id), BASE_URL);
+      window.location.reload();
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    {
+      setInputUser((prevItem: any) => {
+        return { ...prevItem, [e.target.name]: e.target.value };
+      });
+    }
+  };
 
   React.useEffect(() => {
     (async () => {
@@ -53,7 +77,7 @@ function Listuser() {
           </div>
           <div className="mx-2"></div>
           <div className="flex flex-col items-start">
-            <h3 className=" text-blue-700 ">{item.name}</h3>
+            <h3 className=" text-blue-700 ">{item.name} <span className="bg-blue-300">{item.id}</span></h3>
             <p>{item.email}</p>
           </div>
         </div>
@@ -87,10 +111,13 @@ function Listuser() {
       title: "Actions",
       key: "action",
       align: "center",
-      render: (_, record) => (
+      render: (_, rc) => (
         <Space size="middle">
           <div>
-            <button onClick={() => navigate("/edit-user")} className="text-red-500">
+            <button
+              onClick={() => handleEdit(rc.id)}
+              className="text-red-500"
+            >
               Edit
             </button>
           </div>
@@ -98,7 +125,7 @@ function Listuser() {
           <button
             // type="primary"
             className=" text-red-600"
-            onClick={() => handleDelete(record.id)}
+            onClick={() => handleDelete(rc.id)}
           >
             Delete
           </button>
@@ -107,29 +134,19 @@ function Listuser() {
     },
   ];
 
-  const handleDelete = async (id: string) => {
-    try {
-      await Api.Delete(Number(id), BASE_URL);
-      window.location.reload();
-    } catch (err) {
-      alert(err);
-    }
-  };
-
   return (
     <Container>
       <div className="flex flex-col">
-        <div className="mx-20 ">
-          <Search
-            placeholder="search"
-            allowClear
-            enterButton="Search"
-            size="large"
-            onSearch={onSearch}
-          />
-        </div>
-
         <div className=" ">
+          <div className="mx-20 ">
+            <Search
+              placeholder="search"
+              allowClear
+              enterButton="Search"
+              size="large"
+              onSearch={onSearch}
+            />
+          </div>
           <Table
             className="hidden lg:block"
             columns={columns}

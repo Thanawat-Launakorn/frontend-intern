@@ -12,6 +12,10 @@ export async function Delete<IModel>(id?: number, BASE_URL?: string) {
   }
 }
 
+export async function Update(id: number, BASE_URL?: string) {
+  return await axios.patch<Array<IUser>>(`${BASE_URL}user/update${id}`);
+}
+
 // export async function Update<IModel>(id?: number, BASE_URL?: string) {
 //   if (id) {
 //     return await axios.update<IModel>(`${BASE_URL}user/update${id}`);
