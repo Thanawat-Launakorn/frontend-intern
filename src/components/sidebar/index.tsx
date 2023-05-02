@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import { ThemeContext } from "../../context/ThemeProvider";
+import { ThemeContext } from "../../context/theme/ThemeProvider";
 const { Sider } = Layout;
 type AppSideBarProps = {
   collapsed: boolean;
@@ -46,14 +46,14 @@ export default function AppSideBar({
 
   const items: MenuItem[] = [
     getItem("Dashboard", "1", <DashboardOutlined />),
-    getItem("Form", "sub1", <FormOutlined />, [
-      getItem("Login", "5", <ExportOutlined />),
-      getItem("Register", "6", <UserAddOutlined />),
-      getItem("Submenu", "sub2", null, [
-        getItem("Option 7", "7"),
-        getItem("Option 8", "8"),
-      ]),
-    ]),
+    // getItem("Form", "sub1", <FormOutlined />, [
+    //   getItem("Login", "5", <ExportOutlined />),
+    //   getItem("Register", "6", <UserAddOutlined />),
+    //   getItem("Submenu", "sub2", null, [
+    //     getItem("Option 7", "7"),
+    //     getItem("Option 8", "8"),
+    //   ]),
+    // ]),
     getItem("List", "sub3", <TableOutlined />, [
       getItem("Option 9", "9"),
       getItem("Option 10", "10"),

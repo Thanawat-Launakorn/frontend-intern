@@ -6,17 +6,61 @@ import rabbit from "../../../assets/images/rabbit.png";
 import Button from "../../../components/button";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
+import { _GetLocalStorage } from "../../../utils/storage.utils";
+import { authentication } from "../../../libs/auth/config/initial-value.config";
+import { Token } from "../../../libs/auth/config/interface.config";
+import { localStorageKey } from "../../../config/local-storage-key";
+import { ISigin } from "../../../service/Api/auth/auth-interface";
+import authAPI from "../../../service/Api/auth";
+import { openNotification } from "../../../components/notification";
+import { useAuthDispatch } from "../../../context/auth/jwt/AuthProvider";
 
 export default function Login() {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const navigate = useNavigate();
+  const auth = useAuthDispatch();
+
+  const tokenInitialState: Token = _GetLocalStorage<Token>(
+    localStorageKey.authentication,
+    authentication.token
+  );
+
+  const onFinish = (values: ISigin) => {
+    authAPI
+      .signIn({
+        email: values.email,
+        password: values.password,
+      })
+      .then((res) => {
+        console.log("res", res);
+        console.log("token", res.token);
+        auth._signIn({
+          token: res.token,
+          userInfo: res.userInfo,
+        });
+        openNotification({ type: "success", title: "success" });
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        openNotification({
+          type: "error",
+          title: "error",
+          description: err.message,
+        });
+      });
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
 
-  const navigate = useNavigate();
+  React.useEffect(() => {
+    (async () => {
+      try {
+        tokenInitialState.accessToken && navigate("/dashboard");
+      } catch (err) {}
+    })();
+  }, []);
   return (
     <Container className="grid justify-center">
       <Space className="grid grid-cols-1 lg:grid-cols-[350px_auto] justify-items-center rounded-lg shadow-lg bg-white px-10 my-20 ">
@@ -55,8 +99,8 @@ export default function Login() {
             </Form.Item>
             <Button
               value="sign in"
+              type="submit"
               className="bg-pink-600 text-white hover:bg-blue-600"
-              onClick={() => {}}
             />
             <div className="my-5"></div>
           </Form>

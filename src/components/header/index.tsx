@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const { Header, Content } = Layout;
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { ThemeContext } from "../../context/ThemeProvider";
+import { ThemeContext } from "../../context/theme/ThemeProvider";
 type AppHeaderProps = {
   collapsed: boolean;
   onClick: MouseEventHandler<HTMLSpanElement>;

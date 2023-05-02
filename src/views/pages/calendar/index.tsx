@@ -6,7 +6,6 @@ import dayjs, { Dayjs } from "dayjs";
 
 import type { CellRenderInfo } from "rc-picker/lib/interface";
 import Container from "../../../components/containers";
-import { IHoliday } from "../../../models/IHoliday";
 
 const getListData = (value: Dayjs) => {
   let listData;
@@ -30,7 +29,7 @@ const getMonthData = (value: Dayjs) => {
 };
 
 export default function Calendar() {
-  const [holiday, setHoliday] = React.useState<Array<Partial<IHoliday>>>([]);
+  // const [holiday, setHoliday] = React.useState<Array<Partial<IHoliday>>>([]);
   const monthCellRender = (value: Dayjs) => {
     const num = getMonthData(value);
     return num ? (
@@ -74,7 +73,7 @@ export default function Calendar() {
     (async () => {
       try {
         const response = await axios.request(options);
-        setHoliday(response.data);
+        // setHoliday(response.data);
       } catch (error) {
         alert(error);
       }

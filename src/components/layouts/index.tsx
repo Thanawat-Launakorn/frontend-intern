@@ -5,7 +5,7 @@ import { Layout, theme } from "antd";
 import AppSideBar from "../sidebar";
 import AppHeader from "../header";
 import AppContent from "../content";
-import ThemeProvider from "../../context/ThemeProvider";
+import ThemeProvider from "../../context/theme/ThemeProvider";
 
 const DefaultLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -24,8 +24,6 @@ const DefaultLayout: React.FC = () => {
             onClick={() => setCollapsed(!collapsed)}
             props={receive}
           />
-
-          <AppContent isOpen={receive} />
         </Layout>
       </Layout>
     </ThemeProvider>
