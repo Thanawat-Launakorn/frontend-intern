@@ -1,16 +1,17 @@
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import DefaultLayout from "./components/layouts";
-import ErrorPage from "./views/pages/error";
+import "./global.css";
+import { RouterProvider } from "react-router-dom";
+import React, { Suspense } from "react";
+import routes from "./routes/_router";
+import Loading from "./views/pages/loading";
+import AuthProvider from "./context/auth/jwt/AuthProvider";
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="*" element={<DefaultLayout />} />
-        <Route path="/*" element={<ErrorPage />} />
-      </Routes>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <AuthProvider>
+        <RouterProvider router={routes} />
+      </AuthProvider>
+    </Suspense>
   );
 }
 

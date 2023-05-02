@@ -3,7 +3,14 @@ export default {
   darkMode: 'class',
   content: ["./src/**/*.{html,js,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: 'var(--primary-color)',
+        secondary: 'var(--secondary-color)',
+        active: 'var(--active-color)',
+        black: 'var(--black-color)'
+      }
+    },
   },
   plugins: [],
 }
